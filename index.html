@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>reCAPTCHA Test</title>
+
+  <!-- Google reCAPTCHA v2 -->
+  <script
+    src="https://www.google.com/recaptcha/api.js"
+    async
+    defer>
+  </script>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    .box {
+      background: white;
+      width: 320px;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      margin-top: 0;
+    }
+
+    input {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 12px;
+      margin-bottom: 12px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .captcha {
+      margin: 15px 0;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      background: #000;
+      color: white;
+    }
+
+    #message {
+      margin-top: 15px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="box">
+
+    <h2>Sign In</h2>
+
+    <input
+      type="email"
+      placeholder="Email"
+      required>
+
+    <input
+      type="password"
+      placeholder="Password"
+      required>
+
+    <!-- reCAPTCHA v2 Checkbox -->
+    <div class="captcha">
+      <div
+        class="g-recaptcha"
+        data-sitekey="6LecGcItAAAAALUubalE_telsLDUU94l0Z93aW_v">
+      </div>
+    </div>
+
+    <button onclick="signIn()">
+      Sign In
+    </button>
+
+    <p id="message"></p>
+
+  </div>
+
+  <script>
+    function signIn() {
+
+      const captchaResponse = grecaptcha.getResponse();
+
+      if (!captchaResponse) {
+        document.getElementById("message").innerText =
+          "Please complete the reCAPTCHA.";
+        return;
+      }
+
+      document.getElementById("message").innerText =
+        "Dummy sign-in successful!";
+    }
+  </script>
+
+</body>
+</html>
